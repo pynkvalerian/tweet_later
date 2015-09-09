@@ -19,7 +19,7 @@ require 'sinatra'
 require "sinatra/reloader" if development?
 
 require 'erb'
-require 'byebug'
+# require 'byebug'
 
 require 'twitter'
 require 'omniauth-twitter'
