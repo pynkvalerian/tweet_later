@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
 
   def fetch_tweets!
   	@tweets = $twitter_client.user_timeline(self.username)
-  	byebug
     if self.tweets.count == 0
 	  	@tweets.each do |tweet|
 	  		self.tweets.create(text: tweet.text, text_created_at: tweet.created_at)

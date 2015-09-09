@@ -11,8 +11,10 @@
   <h3>Your recent tweets</h3>
   <div class="tweets">
     <% @tweets.each do |tweet| %>
-    <dt><%= tweet.text %></dt> 
-    <dd><%= tweet.text_created_at %></dd>
+    <div class="tweet">
+      <dt><%= tweet.text %></dt> 
+      <dd><%= tweet.text_created_at %></dd>
+    </div>
     <% end %> 
   </div>
 
