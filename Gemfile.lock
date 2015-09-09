@@ -19,7 +19,6 @@ GEM
     backports (3.6.6)
     buftok (0.2.0)
     builder (3.2.2)
-    byebug (6.0.2)
     daemons (1.2.3)
     diff-lcs (1.2.5)
     domain_name (0.5.24)
@@ -64,6 +63,11 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.4)
+    rails_stdout_logging (0.0.4)
     rake (10.4.2)
     rspec (3.3.0)
       rspec-core (~> 3.3.0)
@@ -121,10 +125,10 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   activesupport
-  byebug
   faker
   omniauth-twitter
   pg
+  rails_12factor
   rake
   rspec
   shotgun
