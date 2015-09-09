@@ -1,0 +1,27 @@
+<div class="container">
+  <button type="button"><a href="/logout">LOGOUT</a></button>
+  <button type="button"><a href="/">HOME</a></button>
+  
+  <h1>Welcome to TweetHelper!</h1>
+  <p>Hello, <%= @user.username %>!</p>
+
+  <form id="ajax" method="post" action="/tweet">
+    <label for="tweet"> How are you feeling today? Tweet it here: </label>
+    <input type="text" name="tweet" placeholder="Your Tweet">
+    <input type="submit">
+  </form>
+
+  <div id="tweeted"></div>
+
+  <h3>Your recent tweets</h3>
+  <div class="tweets">
+    <% @tweets.each do |tweet| %>
+    <div class="tweet">
+      <dt><%= tweet.text %></dt> 
+      <dd><%= tweet.text_created_at %></dd>
+    </div>
+    <% end %> 
+  </div>
+
+
+</div>

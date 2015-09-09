@@ -1,22 +1,10 @@
 <div class="container">
   <h1>Welcome to TweetHelper!</h1>
-  <p>Hello, <%= @user.username %>!</p>
+  <p>Hello, you!</p>  
 
-  <form id="ajax" method="post" action="/tweet">
-    <label for="tweet"> How are you feeling today? Tweet it here: </label>
-    <input type="text" name="tweet" placeholder="Your Tweet">
-    <input type="submit">
-  </form>
-
-  <h3>Your recent tweets</h3>
-  <div class="tweets">
-    <% @tweets.each do |tweet| %>
-    <div class="tweet">
-      <dt><%= tweet.text %></dt> 
-      <dd><%= tweet.text_created_at %></dd>
-    </div>
-    <% end %> 
-  </div>
-
-
+  <% if session[:username].nil? %>
+    <button><a href ="/login">LOGIN</a></button>
+  <% else %>
+    <button><a href ="/users/<%= session[:username] %>">My Profile</a></button>
+  <% end %>
 </div>

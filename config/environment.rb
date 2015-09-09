@@ -22,6 +22,7 @@ require 'erb'
 require 'byebug'
 
 require 'twitter'
+require 'omniauth-twitter'
 require 'yaml'
 
 # Some helper constants for path-centric logic
@@ -42,6 +43,11 @@ API_KEY = YAML.load(File.open('config/secret.yaml'))
 $twitter_client = Twitter::REST::Client.new do |config|
   config.consumer_key        = API_KEY["TWITTER_CONSUMER_KEY"]
   config.consumer_secret     = API_KEY["TWITTER_CONSUMER_SECRET"]
-  config.access_token        = API_KEY["TWITTER_ACCESS_TOKEN"]
-  config.access_token_secret = API_KEY["TWITTER_ACCESS_TOKEN_SECRET"]
+  config.access_token        = nil
+  config.access_token_secret = nil
+end
+
+# OMNIAUTH TWITTER
+use OmniAuth::Builder do 
+	provider :twitter, API_KEY["TWITTER_CONSUMER_KEY"], API_KEY["TWITTER_CONSUMER_SECRET"]
 end

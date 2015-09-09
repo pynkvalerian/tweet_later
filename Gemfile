@@ -17,6 +17,8 @@ gem 'rake'
 
 gem 'shotgun'
 gem 'twitter'
+gem 'omniauth-twitter'
+
 gem 'byebug'
 
 group :test do
