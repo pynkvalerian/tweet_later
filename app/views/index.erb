@@ -1,9 +1,9 @@
 <div class="container">
   <h1>Welcome to TweetHelper!</h1>
-  <p>Hello, you!</p>  
+  <p>Hello, you!</p>
 
   <% if session[:username].nil? %>
-    <button><a href ="/login">LOGIN</a></button>
+    <button><a href ="/login">Log In via Twitter</a></button>
   <% else %>
     <button><a href ="/users/<%= session[:username] %>">My Profile</a></button>
   <% end %>
