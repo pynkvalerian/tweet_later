@@ -20,7 +20,9 @@ gem 'shotgun'
 gem 'twitter'
 gem 'omniauth-twitter'
 
-gem 'byebug'
+# gem 'byebug'
+gem 'rails_12factor'
+# gem 'puma'
 
 group :test do
   gem 'faker'
