@@ -38,9 +38,10 @@ class User < ActiveRecord::Base
 # ASSIGN WORKER TO POST TWEET AT SPECIFIED TIMES
   def tweet(status, time)
       my_tweet = self.tweets.create(text: status)
-      if time.to_i == 0
+      time = time.to_i
+      if time == 0
         TweetWorker.perform_async(my_tweet.id)
-      elsif time.to_i > 0
+      elsif time > 0
         TweetWorker.perform_at(time.seconds.from_now, my_tweet.id)
       end
   end

@@ -2,11 +2,12 @@ $(document).ready(function() {
 
 	// HIDES TWEET STATUS WHEN PAGE LOADED
   	$("#tweet_done").hide();
- 	$('#tweet_in_progress').hide();
+  	$('#tweet_in_progress').hide();
 
  	// WHEN SUBMIT TWEET
 	$('form#ajax').on('submit', function(event){
 		event.preventDefault();
+		$('form#ajax').hide();
 
 		// SEND POST REQUEST
 		$.ajax({
@@ -28,6 +29,11 @@ $(document).ready(function() {
 
 		});
 	});
+
+	$('button#tweet_again').on('click', function(){
+		$("#tweet_done").hide();
+		$('form#ajax').show();
+	});
 });
 
 function isItDoneYet(jid, tweet){
@@ -48,7 +54,7 @@ function isItDoneYet(jid, tweet){
 
 function addTweet(tweet){
 	$('div.tweet:first-child').prepend(
-		'<div class="tweet">\
+		'<div class="new_tweet">\
 		<dt>'+tweet+'</dt>\
 		<dd> recently posted by you! </dd>\
 		</div>'

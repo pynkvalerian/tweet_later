@@ -1,11 +1,30 @@
 .container {
   margin: 20px auto;
-  width: 600px;
-  padding: 0px 20px 20px 20px;
+  width: 700px;
+  padding: 20px;
   border: 1px dotted black;
+  background-color: #c0deed;
 }
 th {
   text-align: left;
+}
+
+.header {
+	padding: 10px;
+	height: 120px;
+}
+
+h1 {
+	text-align: center
+}
+
+dd {
+	text-indent: 10px
+}
+
+#tweet_done, #tweet_in_progress {
+	text-align: center ;
+	color: #888
 }
 
 #greeting {
@@ -16,5 +35,13 @@ th {
 	text-align: center;
 	padding: 10px;
 	width: 400px;
+	margin-right: auto;
+	margin-left: auto;
+	border: 1px solid #4099FF;
+	border-radius: 20px;
+	background-color: #55acee
+}
+
+#new_tweet {
 	border: 1px solid #4099FF;
 }
