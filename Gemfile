@@ -15,13 +15,16 @@ gem 'activesupport'
 gem 'activerecord'
 
 gem 'rake'
+gem 'byebug'
 
 gem 'shotgun'
 gem 'twitter'
 gem 'omniauth-twitter'
 
-# gem 'byebug'
-gem 'rails_12factor'
+gem 'sidekiq'
+gem 'redis'
+
+# gem 'rails_12factor'
 # gem 'puma'
 
 group :test do

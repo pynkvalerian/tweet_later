@@ -19,11 +19,14 @@ require 'sinatra'
 require "sinatra/reloader" if development?
 
 require 'erb'
-# require 'byebug'
+require 'byebug'
 
 require 'twitter'
 require 'omniauth-twitter'
 require 'yaml'
+
+require 'sidekiq'
+require 'redis'
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
@@ -41,16 +44,16 @@ require APP_ROOT.join('config', 'database')
 # API_KEY = YAML.load(File.open('config/secret.yaml'))
 
 $twitter_client = Twitter::REST::Client.new do |config|
-  # config.consumer_key        = API_KEY["TWITTER_CONSUMER_KEY"]
-  # config.consumer_secret     = API_KEY["TWITTER_CONSUMER_SECRET"]
-  config.consumer_key = ENV['TWITTER_KEY']
-  config.consumer_secret = ENV['TWITTER_SECRET']
+  config.consumer_key        = API_KEY["TWITTER_CONSUMER_KEY"]
+  config.consumer_secret     = API_KEY["TWITTER_CONSUMER_SECRET"]
+  # config.consumer_key = ENV['TWITTER_KEY']
+  # config.consumer_secret = ENV['TWITTER_SECRET']
   config.access_token        = nil
   config.access_token_secret = nil
 end
 
 # OMNIAUTH TWITTER
 use OmniAuth::Builder do 
-	# provider :twitter, API_KEY["TWITTER_CONSUMER_KEY"], API_KEY["TWITTER_CONSUMER_SECRET"]
-	provider :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
+	provider :twitter, API_KEY["TWITTER_CONSUMER_KEY"], API_KEY["TWITTER_CONSUMER_SECRET"]
+	# provider :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
 end
