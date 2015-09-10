@@ -41,7 +41,7 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 require APP_ROOT.join('config', 'database')
 
 # Twitter configuration
-# API_KEY = YAML.load(File.open('config/secret.yaml'))
+API_KEY = YAML.load(File.open('config/secret.yaml'))
 
 $twitter_client = Twitter::REST::Client.new do |config|
   config.consumer_key        = API_KEY["TWITTER_CONSUMER_KEY"]

@@ -1,4 +1,5 @@
 get '/' do
+	byebug
 	erb :index
 end
 
@@ -24,21 +25,21 @@ get '/users/:username' do
   erb :user_page
 end
 
-post '/tweet' do
-	if session[:username].nil?
-		redirect to('/auth/twitter')
-	else
-		tweet = params[:tweet]
-		@user = User.find_by(username: session[:username])
-		$twitter_client.access_token = @user.access_token
-		$twitter_client.access_token_secret = @user.access_token_secret
+# post '/tweet' do
+# 	if session[:username].nil?
+# 		redirect to('/auth/twitter')
+# 	else
+# 		tweet = params[:tweet]
+# 		@user = User.find_by(username: session[:username])
+# 		$twitter_client.access_token = @user.access_token
+# 		$twitter_client.access_token_secret = @user.access_token_secret
 
-		$twitter_client.update(tweet)
-		redirect to("/users/#{@user.username}")
-	end
-end
+# 		$twitter_client.update(tweet)
+# 		redirect to("/users/#{@user.username}")
+# 	end
+# end
 
-post '/ajax_tweets' do
+post '/ajax_tweets' do  
 	@user = User.find_by(username: session[:username])
 	tweet = params["tweet"]
 	$twitter_client.access_token = @user.access_token

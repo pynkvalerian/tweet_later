@@ -5,10 +5,10 @@
   <h1>Welcome to TweetHelper!</h1>
   <p>Hello, <%= @user.username %>!</p>
 
-  <form id="ajax" method="post" action="/tweet">
+  <form id="ajax">
     <label for="tweet"> How are you feeling today? Tweet it here: </label>
     <input type="text" name="tweet" placeholder="Your Tweet">
-    <input type="submit">
+    <input type="submit" value="Tweet">
   </form>
 
   <div id="tweeted"></div>

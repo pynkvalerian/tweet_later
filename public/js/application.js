@@ -1,11 +1,10 @@
 $(document).ready(function() {
   
-	$("#ajax").submit(function(event){
-		
+	$('form#ajax').on('submit', function(event){
 		event.preventDefault();
 
 		$.ajax({
-			url: '/ajax_tweet',
+			url: '/ajax_tweets',
 			method: 'POST',
 			dataType: "json",
 			data: $(this).serialize()
@@ -13,14 +12,15 @@ $(document).ready(function() {
 				$("#tweeted").append(
 					'<p> Your tweet has been posted successfully! </p>'
 					);
-				$('.tweet:first-child').append(
+				debugger;
+				$('.tweet').prepend(
 					'<div class="tweet">\
-					<dt>'+value["text"]+'</dt>\
-   				<dd> posted on '+value["text_created_at"]+'</dd>\
+					<dt>'+response+'</dt>\
+   				<dd> posted on '+Date($.now())+'</dd>\
    				</div>'
 					);
-			})
-		})
-	})
+			
+		});
+	});
 
 });
