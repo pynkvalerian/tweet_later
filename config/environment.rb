@@ -26,6 +26,7 @@ require 'omniauth-twitter'
 require 'yaml'
 
 require 'sidekiq'
+require 'sidekiq/api'
 require 'redis'
 
 # Some helper constants for path-centric logic

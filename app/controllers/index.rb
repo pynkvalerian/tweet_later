@@ -1,12 +1,19 @@
 get '/' do
-	byebug
 	erb :index
 end
 
+# LOG IN VIA TWITTER
 get '/login' do 
 	redirect to('/auth/twitter')
 end
 
+# USER LOG OUT / CLEAR SESSION
+get '/logout' do
+	session[:username] = nil
+	redirect to('/')
+end
+
+# CALLBACK AFTER TWITTER LOG IN 
 get '/auth/twitter/callback' do
   env['omniauth.auth'] ? session[:admin] = true : halt(401,'Not Authorized')
 
@@ -19,37 +26,32 @@ get '/auth/twitter/callback' do
   redirect to("/users/#{user.username}")
 end
 
+# USER HOME PAGE
 get '/users/:username' do
   @user = User.find_by(username: session[:username])
   @tweets = @user.fetch_tweets!
   erb :user_page
 end
 
-# post '/tweet' do
-# 	if session[:username].nil?
-# 		redirect to('/auth/twitter')
-# 	else
-# 		tweet = params[:tweet]
-# 		@user = User.find_by(username: session[:username])
-# 		$twitter_client.access_token = @user.access_token
-# 		$twitter_client.access_token_secret = @user.access_token_secret
-
-# 		$twitter_client.update(tweet)
-# 		redirect to("/users/#{@user.username}")
-# 	end
-# end
-
+# AJAX POST TWEET
 post '/ajax_tweets' do  
 	@user = User.find_by(username: session[:username])
 	tweet = params["tweet"]
-	$twitter_client.access_token = @user.access_token
-	$twitter_client.access_token_secret = @user.access_token_secret
+	time = params["time"]
 
-	$twitter_client.update(tweet)
-	tweet.to_json
+	data = {}
+	data["jid"] = @user.tweet(tweet, time)
+	data["tweet"] = tweet
+	data.to_json
 end
 
-get '/logout' do
-	session[:username] = nil
-	redirect to('/')
+# IS IT DONE YET?
+get '/status/:job_id' do
+	status = TweetWorker.job_is_complete(params[:job_id])
+	if status == true
+		data = "true"
+	elsif status == false
+		data = "false"
+	end
 end
+

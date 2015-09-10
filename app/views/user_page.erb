@@ -1,17 +1,30 @@
 <div class="container">
   <button type="button"><a href="/logout">LOGOUT</a></button>
   <button type="button"><a href="/">HOME</a></button>
+  <p id="greeting">Hello, <%= @user.username %>!</p>
   
   <h1>Welcome to TweetHelper!</h1>
-  <p>Hello, <%= @user.username %>!</p>
+
 
   <form id="ajax">
-    <label for="tweet"> How are you feeling today? Tweet it here: </label>
+    <p>How are you feeling today? </p>
+    <label for="tweet"> Tweet it: </label>
     <input type="text" name="tweet" placeholder="Your Tweet">
+  </br>
+    <label for="time"> When do you want to tweet it? </label>
+    <select name="time">
+      <option value="0">now</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="30">30</option>
+      <option value="45">45</option>
+    </select></br>
     <input type="submit" value="Tweet">
   </form>
 
-  <div id="tweeted"></div>
+  <div id="tweet_done"><p> Your tweet has been posted successfully! </p></div>
+  <div id="tweet_in_progress"><p> Your tweet is still being processed... </p></div>
 
   <h3>Your recent tweets</h3>
   <div class="tweets">
